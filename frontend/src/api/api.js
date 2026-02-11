@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ethara-ai-1ass.onrender.com' || import.meta.env.VITE_API_URL_LIVE;
+const API_BASE_URL ='https://ethara-ai-1ass.onrender.com' || import.meta.env.VITE_API_URL_LIVE;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
