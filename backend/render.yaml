@@ -10,7 +10,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.10
       - key: MONGODB_URL
-        value: mongodb+srv://jodd0110_db_user:12345@cluster0.l2utpy5.mongodb.net/?appName=Cluster0
+        value: MONGODB_URL=mongodb+srv://jodd0110_db_user:12345@cluster0.l2utpy5.mongodb.net/hrms_lite?retryWrites=true&w=majority&tls=true
       - key: DATABASE_NAME
         value: hrms_lite
       - key: CORS_ORIGINS
