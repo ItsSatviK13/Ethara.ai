@@ -6,8 +6,6 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: startCommand: uvicorn main:app --host 127.0.0.1 --port 8000
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
       - key: MONGODB_URL
         value: mongodb+srv://jodd0110_db_user:12345@cluster0.l2utpy5.mongodb.net/?appName=Cluster0
       - key: DATABASE_NAME
