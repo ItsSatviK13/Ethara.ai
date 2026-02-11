@@ -114,9 +114,9 @@ async def lifespan(app: FastAPI):
         await database.attendance.create_index(
             [("employee_id", 1), ("date", 1)], unique=True
         )
-        print("✅ Connected to MongoDB")
+        print(".TICK Connected to MongoDB")
     except Exception as e:
-        print("❌ MongoDB connection failed:", e)
+        print(".CROSS MongoDB connection failed:", e)
         raise e
 
     yield
