@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, status, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field, validator
 from typing import List, Optional
 from datetime import date, datetime
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -44,7 +44,7 @@ class EmployeeCreate(BaseModel):
     email: EmailStr
     department: str = Field(..., min_length=1, max_length=100)
 
-    @field_validator("employee_id", "full_name", "department")
+    @validator("employee_id", "full_name", "department")
     @classmethod
     def no_empty_strings(cls, v):
         if not v.strip():
@@ -69,7 +69,7 @@ class AttendanceCreate(BaseModel):
     date: date
     status: AttendanceStatus
 
-    @field_validator("date")
+    @validator("date")
     @classmethod
     def validate_date(cls, v):
         if v > date.today():
@@ -166,7 +166,7 @@ async def create_employee(employee: EmployeeCreate):
     if await database.employees.find_one({"email": employee.email}):
         raise HTTPException(400, "Email already exists")
 
-    result = await database.employees.insert_one(employee.model_dump())
+    result = await database.employees.insert_one(employee.dict())
     new_emp = await database.employees.find_one({"_id": result.inserted_id})
     return employee_helper(new_emp)
 
