@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn main:app --host 127.0.0.1 --port 8000
+    startCommand: uvicorn main:app --host 127.0.0.1 --port 8000
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.5
